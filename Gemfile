@@ -2,9 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'devise'
+gem 'hpricot'
+gem 'ruby_parser'
 gem 'mongoid'
 gem 'mongoid_spacial'
 gem 'haml'
+gem 'haml-rails'
 gem 'bson_ext'
 gem 'rails-backbone'
 # Bundle edge Rails instead:
