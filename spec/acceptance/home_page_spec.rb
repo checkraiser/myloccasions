@@ -35,4 +35,13 @@ feature 'Sign In', %q{
     click_on('Sign in')
     current_path.should == user_root_path
   end
+  scenario "Unsuccessful Sign In" do
+    click_sign_in
+    fill_in 'Name', :with => "BadUser"
+    fill_in 'Email', :with => 'hacker@getyou.com'
+    fill_in 'Password', :with => 'badpassword'
+    click_on 'Sign in'
+    current_path.should == user_session_path
+    page.should have_content("Invalid email or password")
+  end
 end
