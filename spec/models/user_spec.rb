@@ -23,6 +23,20 @@ describe User do
       @user.valid?.should be_false
       @user.errors[:name].should include("can't be blank")
     end
+      describe "User Event" do
+    it "can be built for a user" do
+      lambda {
+        @user.events.build(:name => "A new event")
+      }.should change(@user.events, :length).by(1)
+    end
+    it "can be removed from a user" do
+      @user.events.build(:name => "A short event")
+      lambda {
+        @user.events.first.destroy
+      }.should change(@user.events, :length).by(-1)
+    end
+  end
+
   end
 end
 

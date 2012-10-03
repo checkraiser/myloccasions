@@ -1,11 +1,14 @@
 Loccasions::Application.routes.draw do
   
+#  get "events/index"
+
   get "home/index"
 
   devise_for :users
 
   root :to => "home#index"
-  match 'events' => 'home#index', :as => :user_root
+  match '/' => 'home#index', :as => :user_root
+  match 'events' => 'events#index', :as => :events
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
