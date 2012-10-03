@@ -14,3 +14,25 @@ feature 'Home Page', %q{
     page.should have_content('What is Loccasions?')
   end
 end
+
+feature 'Sign In', %q{
+	As an administrator
+	I want to sign in to Loccasions
+} do
+  background do
+    visit "/"
+  end
+  scenario "Click Sign In" do
+    click_link "Sign In"
+    page.should have_selector("title", :text => "Loccasions: Sign In")
+    page.should have_selector('form')
+  end
+  scenario "Successful Sign In" do
+    click_sign_in
+    FactoryGirl.create(:user)
+    fill_in 'Email', :with => 'testy@test.com'
+    fill_in 'Password', :with => 'password'
+    click_on('Sign in')
+    current_path.should == user_root_path
+  end
+end
